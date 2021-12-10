@@ -237,8 +237,9 @@ class _SmartRefresherState extends State<SmartRefresher> {
         }
         if (up && widget.headerConfig is RefreshConfig) {
           RefreshConfig config = widget.headerConfig as RefreshConfig;
-          _scrollController
-              .jumpTo(_scrollController.offset + config.visibleRange);
+          if (_scrollController.offset < 0) {
+            _scrollController.jumpTo(_scrollController.offset + config.visibleRange);
+          }
         }
         break;
     }
